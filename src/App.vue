@@ -14,28 +14,47 @@
           transition="scale-transition"
           width="40"
         />
+        <span>{{ city }} {{ temp }}&#176;С {{ }}</span>
       </div>
 
       <v-spacer></v-spacer>
     </v-app-bar>
 
     <v-main>
+        <pre style="font-size: 12px;">{{ weatherData }}</pre>
     </v-main>
   </v-app>
 </template>
 
 <script>
-export default {
-    name: 'App',
-    components: {
-    
-    },
-    data() {
-        return {
-
+    export default {
+        name: 'App',
+        components: {
+        
+        },
+        data() {
+            return {
+                weatherData: {}
+            }
+        },
+        computed: {
+            city() {
+                return this.weatherData.city_name || "";
+            },
+            temp() {
+                return this.weatherData.temp || "";
+            }
+        },
+        async created() {
+            try {
+                const data = (await this.$api.forecast.getCurrentWeather()).data;
+                this.weatherData = data.data[0];
+                localStorage.setItem('city', this.weatherData.city_name);
+            } catch (error) {
+                console.log(error.response.data);
+            }
         }
-    },
-};
+    };
 </script>
 
 <style lang="scss"></style>
