@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -14,47 +10,36 @@
           transition="scale-transition"
           width="40"
         />
-        <span>{{ city }} {{ temp }}&#176;С {{ }}</span>
+        <Weather />
       </div>
 
       <v-spacer></v-spacer>
+
+      <div class="d-flex align-center">
+          <Time />
+      </div>
     </v-app-bar>
 
     <v-main>
-        <pre style="font-size: 12px;">{{ weatherData }}</pre>
+        <Calendar />
     </v-main>
   </v-app>
 </template>
 
 <script>
+    import Time from './components/Time';
+    import Weather from './components/Weather';
+    import Calendar from './components/Calendar';
+
     export default {
         name: 'App',
         components: {
-        
+            Time,
+            Weather,
+            Calendar
         },
         data() {
-            return {
-                weatherData: {}
-            }
-        },
-        computed: {
-            city() {
-                return this.weatherData.city_name || "";
-            },
-            temp() {
-                return this.weatherData.temp || "";
-            }
-        },
-        async created() {
-            try {
-                const data = (await this.$api.forecast.getCurrentWeather()).data;
-                this.weatherData = data.data[0];
-                localStorage.setItem('city', this.weatherData.city_name);
-            } catch (error) {
-                console.log(error.response.data);
-            }
+            return { }
         }
     };
 </script>
-
-<style lang="scss"></style>

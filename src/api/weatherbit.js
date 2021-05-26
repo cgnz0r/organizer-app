@@ -6,7 +6,7 @@ const instance = axios.create({
         'Content-Type': 'application/json'
     },
     params: {
-        'key': process.env.WB_API_KEY,
+        'key': process.env.VUE_APP_WB_API_KEY,
         'city': "Tomsk"
     }
 });
