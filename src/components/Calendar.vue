@@ -1,43 +1,34 @@
 <template>
-  <div></div>
+    <v-simple-table>
+        <thead>
+            <tr>
+                <th v-for="day in weekDays" :key="day" class="text-center">{{ day }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th v-for="day in weekDays" :key="day" class="text-center">TBD</th>
+            </tr>
+        </tbody>
+    </v-simple-table>
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            // todo not so dummy
-            months: [
-                {
-                dayCount: 31,
-                startDay: 4,
-                },
-                {
-                dayCount: 28,
-                startDay: 0,
-                },
-                {
-                dayCount: 31,
-                startDay: 0,
-                },
-                {
-                dayCount: 30,
-                startDay: 3,
-                },
-                {
-                dayCount: 31,
-                startDay: 5,
-                },
-                {
-                dayCount: 30,
-                startDay: 1,
-                },
-                {
-                dayCount: 31,
-                startDay: 3,
-                },
-            ],
-        };
-    },
-};
+    import moment from "moment";
+    export default {
+        data() {
+            return {
+                formatString: 'ddd, Do',
+                weekDays: [],
+            };
+        },
+        mounted() {
+            const startWeekDay = moment().startOf("week");
+            this.weekDays.push(startWeekDay.format(this.formatString));
+            for (let i = 0; i < 6; i++) {
+                const nextDay = startWeekDay.add("1", "days").format(this.formatString);
+                this.weekDays.push(nextDay);
+            }
+        },
+    };
 </script>

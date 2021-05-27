@@ -3,6 +3,8 @@
 </template>
 
 <script>
+    import moment from 'moment';
+
     export default {
         data() {
             return {
@@ -14,8 +16,8 @@
         },
         methods: {
             time() {
-                this.timeNow = new Date().toUTCString();
-                setInterval(this.time, 1000);
+                this.timeNow = moment().format("MMM Do YYYY, hh:mm:ss a");
+                setTimeout(this.time, 1000);
             },
         }
     };
