@@ -1,26 +1,26 @@
 <template>
-    <v-simple-table>
-        <thead>
-            <tr>
-                <th v-for="day in weekDays" :key="day" class="text-center">{{ day }}</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th v-for="day in weekDays" :key="day" class="text-center">TBD</th>
-            </tr>
-        </tbody>
-    </v-simple-table>
+    <div class="day-items__wrapper">
+        <Day 
+            v-for="day in weekDays" 
+            :day="day"
+            :key="day" 
+        />
+    </div>
 </template>
 
 <script>
     import moment from "moment";
+    import Day from './Day';
+
     export default {
         data() {
             return {
                 formatString: 'ddd, Do',
                 weekDays: [],
             };
+        },
+        components: {
+            Day
         },
         mounted() {
             const startWeekDay = moment().startOf("week");
@@ -32,3 +32,15 @@
         },
     };
 </script>
+
+<style lang="scss">
+    .day-items {
+
+        &__wrapper {
+            display: flex;
+            justify-content: space-around;
+            flex-flow: row wrap;
+            align-items: flex-start;
+        }
+    }
+</style>

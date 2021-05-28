@@ -21,7 +21,7 @@
     </v-app-bar>
 
     <v-main>
-        <Calendar />
+        <Week />
     </v-main>
   </v-app>
 </template>
@@ -29,14 +29,14 @@
 <script>
     import Time from './components/Time';
     import Weather from './components/Weather';
-    import Calendar from './components/Calendar';
+    import Week from './components/Week';
 
     export default {
         name: 'App',
         components: {
             Time,
             Weather,
-            Calendar
+            Week
         },
         data() {
             return { }
