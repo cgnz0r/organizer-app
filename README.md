@@ -1,4 +1,4 @@
-# scheduler-app
+# organizer-app
 
 ## Project setup
 ```
