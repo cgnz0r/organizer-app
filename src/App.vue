@@ -1,29 +1,17 @@
 <template>
-  <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-        <Weather />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <div class="d-flex align-center">
-          <Time />
-      </div>
-    </v-app-bar>
-
-    <v-main>
-        <Week />
-    </v-main>
-  </v-app>
+    <div>
+        <header class="header">
+            <div class="header__left-side">
+                <Weather />
+            </div>
+            <div class="header__right-side">
+                <Time />
+            </div>
+        </header>
+        <main>
+            <Week />
+        </main>
+    </div>
 </template>
 
 <script>
@@ -43,3 +31,27 @@
         }
     };
 </script>
+
+<style lang="scss">
+    @import './assets/styles/main.scss';
+
+    .header {
+        height: 50px;
+        background: $primary;
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+
+        & > * {
+            padding: 10px 20px;
+        }
+
+        &__left-side {
+            
+        }
+        
+        &__right-side {
+
+        }
+    }
+</style>

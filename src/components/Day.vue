@@ -1,26 +1,21 @@
 <template class="day-item">
-    <v-card class="day-item__wrapper" elevation="3" tile>
+    <div class="day-item__wrapper">
 
-        <!-- todo remove vuetify -->
         <!-- todo weather -->
         <div class="day-item__title">{{ day }}</div>
         <div class="day-item__tasks">
             <ul class="day-item__ul-task">
-                <v-list-item two-line v-for="task in tasks" :key="task.id">
-                    <v-list-item-action>
-                        <v-checkbox :input-value="task.isCompleted" color="primary"></v-checkbox>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>{{ task.name }}</v-list-item-title>
-                        <v-list-item-subtitle>{{ task.desc }}</v-list-item-subtitle>
+                <li class="day-item__li-task" v-for="task in tasks" :key="task.id">
+                    <input type="checkbox" :checked="task.isCompleted">
+                    <span>{{ task.name }}</span>
+                    <span>{{ task.desc }}</span>
 
-                        <!-- todo right align -->
-                        <v-list-item-subtitle>{{ task.time }}</v-list-item-subtitle>
-                    </v-list-item-content>
-                </v-list-item>
+                    <!-- todo right align -->
+                    <span>{{ task.time }}</span>
+                </li>
             </ul>
         </div>
-    </v-card>
+    </div>
 </template>
 
 <script>

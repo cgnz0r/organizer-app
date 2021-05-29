@@ -1,16 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
-import vuetify from './plugins/vuetify'
 
 import ApiPlugin from './plugins/api'
+import store from './store'
 
 Vue.use(ApiPlugin);
 
 Vue.config.productionTip = false
 
-import './assets/styles/main.scss';
-
 new Vue({
-  vuetify,
+  store,
   render: h => h(App)
 }).$mount('#app')
