@@ -1,6 +1,11 @@
-$primary: #FFCCBC;
+$primary: lightseagreen;
+$secondary: silver;
+
+* {
+    margin: 0;
+    padding: 0;
+}
 
 body {
-    margin: 0;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

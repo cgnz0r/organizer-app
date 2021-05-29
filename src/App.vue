@@ -36,22 +36,21 @@
     @import './assets/styles/main.scss';
 
     .header {
-        height: 50px;
+        height: 60px;
         background: $primary;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         font-weight: 600;
-
-        & > * {
-            padding: 10px 20px;
-        }
+        font-size: 14px;
+        box-shadow: 0 1px 5px 1px gray;
 
         &__left-side {
-            
+            padding-left: 20px;
         }
         
         &__right-side {
-
+            padding-right: 20px;
         }
     }
 </style>
