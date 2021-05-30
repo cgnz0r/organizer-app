@@ -1,5 +1,7 @@
-$primary: lightseagreen;
-$secondary: silver;
+$primary: #2e5f3c;
+$light: #fafafa;
+$active: green;
+$secondary: rgb(153, 153, 153);
 
 * {
     margin: 0;
@@ -7,5 +9,6 @@ $secondary: silver;
 }
 
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    // font-family: Georgia, 'Times New Roman', Times, serif
 }

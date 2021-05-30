@@ -38,9 +38,8 @@
 
         &__wrapper {
             display: flex;
-            justify-content: space-around;
-            flex-flow: row wrap;
-            align-items: flex-start;
+            flex-flow: column wrap;
+            align-items: center;
         }
     }
 </style>

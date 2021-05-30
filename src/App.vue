@@ -18,6 +18,7 @@
     import Time from './components/Time';
     import Weather from './components/Weather';
     import Week from './components/Week';
+    import { mapMutations, mapGetters } from 'vuex';
 
     export default {
         name: 'App',
@@ -28,6 +29,23 @@
         },
         data() {
             return { }
+        },
+        methods: {
+            ...mapMutations('todos', [
+                'initData'
+            ]),
+        },
+        mounted() {
+            this.initData();
+        },
+        computed: {
+            ...mapGetters('todos', ['getData'])
+        },
+        watch: {
+            getData(data) {
+                console.log("App :: get Data", data);
+                // localStorage.setItem('org_todos', JSON.stringify(data));
+            }
         }
     };
 </script>
@@ -38,11 +56,12 @@
     .header {
         height: 60px;
         background: $primary;
+        color: $light;
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 16px;
         box-shadow: 0 1px 5px 1px gray;
 
         &__left-side {
