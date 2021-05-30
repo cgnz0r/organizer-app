@@ -9,15 +9,15 @@
             <ul class="day-item__ul-task">
                 <li class="day-item__li-task" v-for="task in tasks" :key="task.id">
                     <div class="day-item__input-group">
-                        <div class="day-item__task-element">
+                        <div class="day-item__task">
                             <input :id="task.id" type="checkbox" :checked="task.isCompleted">
                         </div>
-                        <div class="day-item__task-element">
+                        <div class="day-item__task">
                             <label :for="task.id" class="day-item__task-name">{{ task.name }}</label>
                             <p class="day-item__task-desc">{{ task.desc }}</p>
                         </div>
                     </div>
-                    <div class="day-item__task-element">
+                    <div class="day-item__task">
                         <p class="day-item__task-time">{{ task.time }}</p>
                     </div>
                 </li>
@@ -87,10 +87,10 @@
             margin-top: 30px; 
             padding: 0 20px;
             width: 300px;
-            box-shadow: 0 2px 5px 1px $secondary;
+            box-shadow: 0 2px 5px 1px $grayscale4;
 
             & > *:not(:last-child) {
-                border-bottom: 1px solid $secondary;
+                border-bottom: 1px solid $grayscale4;
             }
 
             & > * {
@@ -146,7 +146,7 @@
             display: flex;
         }
 
-        &__task-element {
+        &__task {
             padding: 5px;
         }
 
@@ -155,7 +155,7 @@
         }
 
         &__task-desc, &__task-time {
-            color: $secondary;
+            color: $grayscale4;
             font-size: 14px;
         }
 
@@ -170,11 +170,11 @@
 
         &__add-btn {
             border: none;
-            background: white;
+            background: $primary;
             border-radius: 50%;
             width: 40px;
             height: 40px;
-            box-shadow: 0px 2px 5px 1px $secondary;
+            fill: $light;
 
             &-wrapper {
                 display: flex;
@@ -182,8 +182,7 @@
             }
 
             &:hover {
-                box-shadow: 0px 2px 5px 1px $active;
-                fill: $active;
+                background: $hovered;
             }
         }
     }

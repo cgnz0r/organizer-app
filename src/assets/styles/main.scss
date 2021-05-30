@@ -1,7 +1,13 @@
-$primary: #2e5f3c;
-$light: #fafafa;
-$active: green;
-$secondary: rgb(153, 153, 153);
+$primary: #334939;
+
+$light: #fdfffd;
+
+$hovered: #596e5f;
+$active: #57b872;
+
+$grayscale4: rgb(155, 155, 155);
+
+$dark: #2e2e2e;
 
 * {
     margin: 0;
@@ -9,6 +15,8 @@ $secondary: rgb(153, 153, 153);
 }
 
 body {
+    color: $dark;
+    background: white;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
     // font-family: Georgia, 'Times New Roman', Times, serif
 }
