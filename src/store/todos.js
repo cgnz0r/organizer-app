@@ -1,3 +1,5 @@
+import { INIT_DATA, SET_ITEM } from './mutation-types'
+
 export default {
     namespaced: true,
     state: {
@@ -9,13 +11,13 @@ export default {
         }
     },
     mutations: {
-        initData(state, data) {
+        [INIT_DATA](state, data) {
             const localOrgTodos = localStorage.org_todos;
             if (typeof localOrgTodos !== "undefined") {
                 state.data = JSON.parse(data);
             }
         },
-        setItem(state, item) {
+        [SET_ITEM](state, item) {
             state.data.push(item);
         }
     },

@@ -32,11 +32,11 @@
         },
         methods: {
             ...mapMutations('todos', [
-                'initData'
+                'INIT_DATA'
             ]),
         },
         mounted() {
-            this.initData();
+            this.INIT_DATA();
         },
         computed: {
             ...mapGetters('todos', ['getData'])

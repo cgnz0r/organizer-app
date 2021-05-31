@@ -13,7 +13,7 @@
                             <input :id="task.id" type="checkbox" :checked="task.isCompleted">
                         </div>
                         <div class="day-item__task">
-                            <label :for="task.id" class="day-item__task-name">{{ task.name }}</label>
+                            <label :for="task.id" class="day-item__task-title">{{ task.title }}</label>
                             <p class="day-item__task-desc">{{ task.desc }}</p>
                         </div>
                     </div>
@@ -24,18 +24,42 @@
             </ul>
         </div>
         <div class="day-item__add-btn-wrapper">
-            <button class="day-item__add-btn" @click='openAddModal'>
+            <button class="day-item__add-btn" @click='toggleModal'>
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 768 768">
                     <title>add todo</title>
                     <path d="M160 416h192v192c0 17.664 14.336 32 32 32s32-14.336 32-32v-192h192c17.664 0 32-14.336 32-32s-14.336-32-32-32h-192v-192c0-17.664-14.336-32-32-32s-32 14.336-32 32v192h-192c-17.664 0-32 14.336-32 32s14.336 32 32 32z"></path>
                 </svg>
             </button>
         </div>
+        <Modal 
+            v-if="isModalOpened"
+        > 
+            <template v-slot:title>
+                <h3>Todo add form</h3>
+            </template>
+            <template v-slot:main>
+                <div class="modal__input-group">
+                    <label for="title" class="modal__label">Title</label>
+                    <input id="title" type="text">
+                </div>
+                <div class="modal__input-group">
+                    <label for="desc"></label>
+                    <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Enter description..."></textarea>
+                </div>
+
+                <span>choose time</span> <span><strong>todo</strong></span>
+            </template>
+            <template v-slot:accept-button>
+                <button @click="addTodo" class="add-btn">Create</button>
+            </template>
+        </Modal>
     </div>
 </template>
 
 <script>
-    import { mapMutations } from 'vuex'
+//@close="isModalOpened = false"
+    import { mapMutations, mapState } from 'vuex'
+    import Modal from './Modal'
 
     export default {
         props: {
@@ -43,35 +67,47 @@
         },
         data() {
             return {
+
                 weather: 15,
                 today: "Sun, 30th",
                 // todo move to vuex
                 tasks: [{
                     id: 1,
-                    name: 'task 1', 
+                    title: 'task 1', 
                     desc: 'descdescdesc descdesc desc desc',
                     time: '10 am',
                     isCompleted: false
                 }, { 
                     id: 2,
-                    name: 'task 2', 
+                    title: 'task 2', 
                     desc: 'desc',
                     time: '12 am',
                     isCompleted: true
                 }, { 
                     id: 3,
-                    name: 'task 3',
+                    title: 'task 3',
                     desc: 'desc',
                     time: '5 pm',
                     isCompleted: false
                 }]
             }
         },
+        components: {
+            Modal
+        },
+        computed: {
+            ...mapState(['isModalOpened'])
+        },
         methods: {
-            ...mapMutations('todos', ['setItem']),
-            openAddModal() {
-                console.log("openAddModal") // Modal.vue
-            }
+            ...mapMutations('todos', ['SET_ITEM']),
+            ...mapMutations({
+                toggleModal: 'TOGGLE_MODAL'
+            }),
+            addTodo() {
+                console.log("add todo handle");
+                this.toggleModal();
+            },
+            
         },
         
     }
@@ -150,7 +186,7 @@
             padding: 5px;
         }
 
-        &__task-name {
+        &__task-title {
             
         }
 
@@ -182,7 +218,7 @@
             }
 
             &:hover {
-                background: $hovered;
+                background: $hovered-dark;
             }
         }
     }
