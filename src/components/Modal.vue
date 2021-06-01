@@ -2,18 +2,21 @@
     <div class="modal__overlay">
         <div class="modal__wrapper">
             <div class="modal__top-section">
-                <slot name="title"></slot>
-                <button class="btn" @click="closeModal">
-                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 768 768">
-                        <title>close</title>
-                        <path d="M607.5 205.5l-178.5 178.5 178.5 178.5-45 45-178.5-178.5-178.5 178.5-45-45 178.5-178.5-178.5-178.5 45-45 178.5 178.5 178.5-178.5z"></path>
-                    </svg>
+                <slot name="title" class="modal__title"></slot>
+                <button class="modal__close-button" @click="closeModal">
+                    <span>x</span>
                 </button>
             </div>
             <div class="modal__middle-section">
                 <slot name="main"></slot>
             </div>
             <div class="modal__bottom-section">
+                <button 
+                    @click="closeModal"
+                    class="modal__close-button modal__close-button_border_none"
+                >
+                    Cancel
+                </button>
                 <slot name="accept-button"></slot>
             </div>
         </div>
@@ -22,9 +25,11 @@
 
 <script>
     export default {
+        props: {
+            acceptTitle: String
+        },
         methods: {
             closeModal() {
-                console.log("Modal :: closeModal")
                 this.$emit("onClose");
             }
         }        
@@ -49,9 +54,11 @@
 
         &__wrapper {
             background: $light;
-            border: 1px solid black;
+            border: none;
+            width: 550px;
             padding: 24px;
-            border-radius: 4px;
+            box-shadow: 0px 2px 8px 2px $grayscale4;
+            color: $primary;
 
             & > *:not(:last-child) {
                 margin-bottom: 32px;
@@ -63,12 +70,12 @@
             justify-content: space-between;
             align-items: center;
             height: 50px;
-            border-bottom: 1px solid gray;
+            border-bottom: 1px solid $primary;
         }
 
         &__middle-section {
             padding-bottom: 20px;
-            border-bottom: 1px solid gray;
+            border-bottom: 1px solid $primary;
         }
 
         &__bottom-section {
@@ -82,26 +89,63 @@
             display: flex;
             flex-flow: column nowrap;
         }
-    }
 
-    .btn {
-        border: none;
-        background: $light;
-        border-radius: 50%;
-        width: 32px;
-        height: 32px;
-        fill: $primary;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &-wrapper {
-            display: flex;
-            justify-content: center;
+        &__label {
+            margin: 4px 0;
+            cursor: pointer;
         }
 
-        &:hover {
-            background: $hovered-light;
+        &__textarea, &__input-time, &__input-text {
+            padding: 16px;
+            border: 1px solid $grayscale2;
+            background: $light;
+            // box-shadow: 0px 4px 8px -4px $grayscale4;
+            cursor: text;
+        }
+
+        &__textarea {
+            resize: none;
+        }
+
+        &__input-time {
+
+        }
+
+        &__input-text {
+
+        }
+
+        &__accept-button, &__close-button {
+            background: $primary;
+            color: $light;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+                background: $hovered-dark;
+            }
+        }
+
+        &__accept-button {
+            width: 96px;
+            height: 36px;
+        }
+
+        &__close-button {
+            width: 32px;
+            height: 32px;
+        }
+
+        &__close-button_border_none {
+            width: 96px;
+            height: 36px;
+            background: $light;
+            color: $primary;
+            margin: 0 16px;
+
+            &:hover {
+                background: $hovered-light;
+            }
         }
     }
 </style>

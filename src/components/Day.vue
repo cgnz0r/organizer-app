@@ -34,6 +34,8 @@
         <Modal 
             v-if="isModalOpened"
             @onClose="closeModal"
+            @onAccept="addTodo"
+            :acceptTitle="acceptTitle"
         >
             <template v-slot:title>
                 <h3>Todo add form</h3>
@@ -41,23 +43,32 @@
             <template v-slot:main>
                 <div class="modal__input-group">
                     <label for="title" class="modal__label">Title</label>
-                    <input id="title" type="text">
+                    <input 
+                        id="title" 
+                        type="text" 
+                        class="modal__input-text" 
+                        placeholder="Enter your title" 
+                        autocomplete="off"
+                    />
                 </div>
                 <div class="modal__input-group">
-                    <label for="desc"></label>
+                    <label for="desc" class="modal__label">Description</label>
                     <textarea 
-                        name="desc" 
                         id="desc" 
-                        cols="30" 
-                        rows="10" 
-                        placeholder="Enter description...">
+                        name="desc" 
+                        class="modal__textarea" 
+                        rows="5" 
+                        placeholder="Enter your description...">
                     </textarea>
                 </div>
 
-                <span>choose time</span> <span><strong>todo</strong></span>
+                <div class="modal__input-group">
+                    <label for="time" class="modal__label">Time</label>
+                    <input id="time" type="time" class="modal__input-time"/>
+                </div>
             </template>
             <template v-slot:accept-button>
-                <button @click="addTodo" class="add-btn">Create</button>
+                <button @click="addTodo" class="modal__accept-button">Create</button>
             </template>
         </Modal>
     </div>
@@ -75,6 +86,7 @@
         data() {
             return {
                 isModalOpened: false,
+                acceptTitle: "Create",
 
                 weather: 15,
                 today: "Sun, 30th",
