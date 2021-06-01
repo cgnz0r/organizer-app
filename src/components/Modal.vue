@@ -21,15 +21,11 @@
 </template>
 
 <script>
-    import { mapMutations } from 'vuex'
-
     export default {
         methods: {
-            ...mapMutations({
-                toggleModal: 'TOGGLE_MODAL'
-            }),
             closeModal() {
-                this.toggleModal();
+                console.log("Modal :: closeModal")
+                this.$emit("onClose");
             }
         }        
     }
@@ -52,7 +48,6 @@
         }
 
         &__wrapper {
-            position: fixed;
             background: $light;
             border: 1px solid black;
             padding: 24px;
