@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="wrapper" :class="{ 'hidden-y-scroll': isModalOpened }">
         <header class="header">
             <div class="header__left-side">
                 <Weather />
@@ -8,7 +8,7 @@
                 <Time />
             </div>
         </header>
-        <main>
+        <main class="main">
             <Week />
         </main>
     </div>
@@ -18,7 +18,7 @@
     import Time from './components/Time';
     import Weather from './components/Weather';
     import Week from './components/Week';
-    import { mapMutations, mapGetters } from 'vuex';
+    import { mapMutations, mapGetters, mapState } from 'vuex';
 
     export default {
         name: 'App',
@@ -39,7 +39,8 @@
             this.INIT_DATA();
         },
         computed: {
-            ...mapGetters('todos', ['getData'])
+            ...mapGetters('todos', ['getData']),
+            ...mapState(['isModalOpened'])
         },
         watch: {
             getData(data) {
@@ -52,6 +53,16 @@
 
 <style lang="scss">
     @import './assets/styles/main.scss';
+
+    .wrapper {
+        position: relative;
+        height: 100vh;
+        overflow: auto;
+    }
+
+    .hidden-y-scroll {
+        overflow-y: hidden;
+    }
 
     .header {
         height: 60px;

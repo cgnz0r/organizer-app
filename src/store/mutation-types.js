@@ -1,5 +1,6 @@
 // index
-export const TOGGLE_MODAL = 'TOGGLE_MODAL';
+export const SET_MODAL_OPENED_STATUS = 'SET_MODAL_OPENED_STATUS';
+export const SET_MODAL_CLOSED_STATUS = 'SET_MODAL_CLOSED_STATUS';
 
 // todos
 export const INIT_DATA = 'INIT_DATA';

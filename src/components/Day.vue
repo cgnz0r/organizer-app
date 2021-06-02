@@ -34,7 +34,7 @@
         <Modal 
             v-if="isModalOpened"
             @onClose="closeModal"
-            @onAccept="addTodo"
+            @onAccept="createTodo"
             :acceptTitle="acceptTitle"
         >
             <template v-slot:title>
@@ -49,6 +49,7 @@
                         class="modal__input-text" 
                         placeholder="Enter your title" 
                         autocomplete="off"
+                        v-model="todoTitle"
                     />
                 </div>
                 <div class="modal__input-group">
@@ -58,27 +59,44 @@
                         name="desc" 
                         class="modal__textarea" 
                         rows="5" 
-                        placeholder="Enter your description...">
-                    </textarea>
+                        placeholder="Enter your description..." 
+                        v-model="todoDesc"
+                    />
                 </div>
 
                 <div class="modal__input-group">
-                    <label for="time" class="modal__label">Time</label>
-                    <input id="time" type="time" class="modal__input-time"/>
+                    <fieldset>
+                        <legend>Time</legend>
+
+                        <div class="modal__input-group">
+                            <label for="form-hours">hrs</label>
+                            <input id="form-hours" type="text" v-model="formHours">
+                        </div>
+                        <div class="modal__input-group">
+                            <label for="form-minutes">mins</label>
+                            <input id="form-minutes" type="text" v-model="formMinutes">
+                        </div>
+                        <div class="modal__input-group">
+                            <label for="form-ampm">am/pm</label>
+                            <select name="form-ampm" id="form-ampm">
+                                <option value="am">a.m.</option>
+                                <option value="pm">p.m.</option>
+                            </select>
+                        </div>
+                    </fieldset>
                 </div>
             </template>
             <template v-slot:accept-button>
-                <button @click="addTodo" class="modal__accept-button">Create</button>
+                <button @click="createTodo" class="modal__accept-button">Create</button>
             </template>
         </Modal>
     </div>
 </template>
 
 <script>
-//@close="isModalOpened = false"
+    import moment from 'moment';
     import { mapMutations } from 'vuex'
     import Modal from './Modal'
-
     export default {
         props: {
             day: String
@@ -87,6 +105,13 @@
             return {
                 isModalOpened: false,
                 acceptTitle: "Create",
+                todoTitle: "",
+                todoDesc: "",
+                formHours: "",
+                formMinutes: "",
+                ampm: "",
+                // todo update fields on mount
+                todoTime: moment().format("hh:mm a"),
 
                 weather: 15,
                 today: "Sun, 30th",
@@ -117,15 +142,30 @@
         },
         computed: { },
         methods: {
-            ...mapMutations('todos', ['SET_ITEM']),
+            ...mapMutations('todos', 
+                ['SET_ITEM']
+            ),
+            ...mapMutations({
+                setModalOpenedStatus: 'SET_MODAL_OPENED_STATUS', 
+                setModalClosedStatus: 'SET_MODAL_CLOSED_STATUS'
+            }),
+            updateFieldsTime() {
+                const currTime = moment();
+                this.formHours = currTime.format("hh");
+                this.formMinutes = currTime.format("mm");
+                // todo am pm update
+            },
             closeModal() {
                 this.isModalOpened = false;
+                this.setModalClosedStatus();
             },
             openModal() {
+                this.updateFieldsTime();
                 this.isModalOpened = true;
+                this.setModalOpenedStatus();
             },
-            addTodo() {
-                console.log("add todo handle");
+            createTodo() {
+                console.log("add todo handle :: todoTitle", this.todoTime);
                 this.closeModal();
             },
         },
