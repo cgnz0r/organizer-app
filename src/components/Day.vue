@@ -46,10 +46,10 @@
                     <input 
                         id="title" 
                         type="text" 
-                        class="modal__input-text" 
+                        class="modal__input modal__input_text" 
                         placeholder="Enter your title" 
                         autocomplete="off"
-                        v-model="todoTitle"
+                        v-model.lazy="todoTitle"
                     />
                 </div>
                 <div class="modal__input-group">
@@ -57,37 +57,43 @@
                     <textarea 
                         id="desc" 
                         name="desc" 
-                        class="modal__textarea" 
+                        class="modal__input modal__input_textarea" 
                         rows="5" 
                         placeholder="Enter your description..." 
-                        v-model="todoDesc"
+                        v-model.lazy="todoDesc"
                     />
                 </div>
 
                 <div class="modal__input-group">
-                    <fieldset>
+                    <fieldset class="modal__input-fieldset">
                         <legend>Time</legend>
 
                         <div class="modal__input-group">
-                            <label for="form-hours">hrs</label>
-                            <input id="form-hours" type="text" v-model="formHours">
+                            <label for="form-hours" class="modal__label">hrs</label>
+                            <input id="form-hours" class="modal__input modal__input_text" type="text" v-model.lazy="formHours">
                         </div>
                         <div class="modal__input-group">
-                            <label for="form-minutes">mins</label>
-                            <input id="form-minutes" type="text" v-model="formMinutes">
+                            <label for="form-minutes" class="modal__label">mins</label>
+                            <input id="form-minutes" class="modal__input modal__input_text" type="text" v-model.lazy="formMinutes">
                         </div>
                         <div class="modal__input-group">
-                            <label for="form-ampm">am/pm</label>
-                            <select name="form-ampm" id="form-ampm">
-                                <option value="am">a.m.</option>
-                                <option value="pm">p.m.</option>
+                            <label for="form-ampm" class="modal__label">am/pm</label>
+                            <select name="form-ampm" id="form-ampm" class="modal__input modal__input_select">
+                                <option class="modal__option" value="am">a.m.</option>
+                                <option class="modal__option" value="pm">p.m.</option>
                             </select>
                         </div>
                     </fieldset>
                 </div>
             </template>
             <template v-slot:accept-button>
-                <button @click="createTodo" class="modal__accept-button">Create</button>
+                <button 
+                    @click="createTodo" 
+                    class="modal__accept-button" 
+                    type="button"
+                >
+                    Create
+                </button>
             </template>
         </Modal>
     </div>

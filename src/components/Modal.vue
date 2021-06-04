@@ -3,7 +3,11 @@
         <div class="modal__wrapper">
             <div class="modal__top-section">
                 <slot name="title" class="modal__title"></slot>
-                <button class="modal__close-button" @click="closeModal">
+                <button 
+                    @click="closeModal"
+                    class="modal__close-button" 
+                    type="button"
+                >
                     <span>x</span>
                 </button>
             </div>
@@ -14,6 +18,7 @@
                 <button 
                     @click="closeModal"
                     class="modal__close-button modal__close-button_border_none"
+                    type="button"
                 >
                     Cancel
                 </button>
@@ -40,16 +45,16 @@
     @import '../assets/styles/main.scss';
 
     .modal {
+        $g: &;
+
         &__overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,.13);
+            inset: 0;
+            background: rgba(0,0,0,.4);
             display: flex;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(2px);
         }
 
         &__wrapper {
@@ -69,8 +74,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 50px;
             border-bottom: 1px solid $primary;
+            padding-bottom: 20px;
         }
 
         &__middle-section {
@@ -93,26 +98,50 @@
         &__label {
             margin: 4px 0;
             cursor: pointer;
+            user-select: none;
         }
 
-        &__textarea, &__input-time, &__input-text {
+        &__input {
             padding: 16px;
             border: 1px solid $grayscale2;
             background: $light;
-            // box-shadow: 0px 4px 8px -4px $grayscale4;
             cursor: text;
+
+            &_textarea {
+                resize: none;
+            }
+
+            &_select {
+                cursor: pointer;
+            }
         }
 
-        &__textarea {
-            resize: none;
+        &__input-fieldset {
+            display: flex;
+
+            & #{$g}__input-group {
+                width: 52px;
+                margin: 0 20px 0 0;
+                text-align: center;
+            }
+
+            & #{$g}__input-group:last-child {
+                width: 88px;
+                margin: 0;
+            }
+
+            & #{$g}__input_text {
+                padding: 8px 16px;
+                text-align: center;
+            }
+
+            & #{$g}__input_select {
+                padding: 8px 16px;
+            }
         }
 
-        &__input-time {
-
-        }
-
-        &__input-text {
-
+        &__option {
+            padding: 8px;
         }
 
         &__accept-button, &__close-button {
@@ -147,5 +176,7 @@
                 background: $hovered-light;
             }
         }
+
+        
     }
 </style>
