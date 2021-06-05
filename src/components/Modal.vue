@@ -126,7 +126,7 @@
             display: flex;
 
             & #{$g}__input-group {
-                width: 52px;
+                width: 88px;
                 margin: 0 20px 0 0;
                 text-align: center;
             }
@@ -136,7 +136,7 @@
                 margin: 0;
             }
 
-            & #{$g}__input_text {
+            & #{$g}__input_number {
                 padding: 8px 16px;
                 text-align: center;
             }

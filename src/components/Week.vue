@@ -1,6 +1,6 @@
 <template>
     <div class="day-items__wrapper">
-        <Day 
+        <WeekDay 
             v-for="day in weekDays" 
             :day="day"
             :key="day" 
@@ -10,7 +10,7 @@
 
 <script>
     import moment from "moment";
-    import Day from './Day';
+    import WeekDay from './WeekDay';
 
     export default {
         data() {
@@ -20,7 +20,7 @@
             };
         },
         components: {
-            Day
+            WeekDay
         },
         mounted() {
             const startWeekDay = moment().startOf("week");
