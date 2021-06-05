@@ -2,7 +2,7 @@
     <div class="modal__overlay">
         <div class="modal__wrapper">
             <div class="modal__top-section">
-                <slot name="title" class="modal__title"></slot>
+                <slot name="title"></slot>
                 <button 
                     @click="closeModal"
                     class="modal__close-button" 
@@ -60,6 +60,7 @@
         &__wrapper {
             background: $light;
             border: none;
+            border-radius: 8px;
             width: 550px;
             padding: 24px;
             box-shadow: 0px 2px 8px 2px $grayscale4;
@@ -74,19 +75,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid $primary;
-            padding-bottom: 20px;
         }
 
-        &__middle-section {
-            padding-bottom: 20px;
-            border-bottom: 1px solid $primary;
+        &__top-section, &__middle-section {
+            border-bottom: 1px solid $grayscale2;
+            padding-bottom: 24px;
         }
 
         &__bottom-section {
             display: flex;
             align-items: flex-end;
             justify-content: flex-end;
+        }
+
+        &__title {
+            font-size: 24px;
+            font-weight: 400;
+            user-select: none;
         }
 
         &__input-group {
@@ -106,6 +111,7 @@
             border: 1px solid $grayscale2;
             background: $light;
             cursor: text;
+            border-radius: 2px;
 
             &_textarea {
                 resize: none;
@@ -149,6 +155,7 @@
             color: $light;
             border: none;
             cursor: pointer;
+            border-radius: 2px;
 
             &:hover {
                 background: $hovered-dark;

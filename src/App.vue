@@ -1,16 +1,24 @@
 <template>
     <div class="wrapper" :class="{ 'hidden-y-scroll': isModalOpened }">
         <header class="header">
-            <div class="header__left-side">
+            <div class="header__left">
+                <div class="logo">
+                    Organizer
+                </div>
+            </div>
+            <div class="header__center">
                 <Weather />
             </div>
-            <div class="header__right-side">
+            <div class="header__right">
                 <Time />
             </div>
         </header>
         <main class="main">
             <Week />
         </main>
+        <footer class="footer">
+            info in the footer
+        </footer>
     </div>
 </template>
 
@@ -75,12 +83,31 @@
         font-size: 16px;
         box-shadow: 0 1px 5px 1px gray;
 
-        &__left-side {
-            padding-left: 20px;
+        & > * {
+            flex: 0 0 33%;
+
+            & > * {
+                margin: 0 24px;
+            }
+        }
+
+        &__center {
+            text-align: center;
         }
         
-        &__right-side {
-            padding-right: 20px;
+        &__right {
+            text-align: right;
         }
+    }
+
+    .main {
+        margin: 32px 0;
+    }
+
+    .footer {
+        height: 50px;
+        background: $primary;
+        color: $light;
+        text-align: center;
     }
 </style>

@@ -38,7 +38,7 @@
             :acceptTitle="acceptTitle"
         >
             <template v-slot:title>
-                <h3>Todo add form</h3>
+                <span class="modal__title">Todo add form</span>
             </template>
             <template v-slot:main>
                 <div class="modal__input-group">
@@ -77,7 +77,7 @@
                             <input id="form-minutes" class="modal__input modal__input_text" type="text" v-model.lazy="formMinutes">
                         </div>
                         <div class="modal__input-group">
-                            <label for="form-ampm" class="modal__label">am/pm</label>
+                            <label for="form-ampm" class="modal__label">am / pm</label>
                             <select name="form-ampm" id="form-ampm" class="modal__input modal__input_select">
                                 <option class="modal__option" value="am">a.m.</option>
                                 <option class="modal__option" value="pm">p.m.</option>
@@ -186,10 +186,15 @@
         &__wrapper {
             display: flex;
             flex-flow: column nowrap;
-            margin-top: 30px; 
+            border-radius: 8px;
+            margin-bottom: 32px; 
             padding: 0 20px;
             width: 300px;
             box-shadow: 0 2px 5px 1px $grayscale4;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
 
             & > *:not(:last-child) {
                 border-bottom: 1px solid $grayscale4;

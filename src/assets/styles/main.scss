@@ -20,14 +20,24 @@ $dark: #2e2e2e;
 body {
     color: $dark;
     background: white;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     overflow: hidden;
 }
 
+body, input, textarea, fieldset {
+    font-family: "Nunito", serif;
+}
+
 fieldset {
+    font-family: "Nunito", serif;
     border: none;
 }
 
 legend {
     user-select: none;
+}
+
+.logo {
+    font-family: 'Pattaya';
+    font-size: 1.5em;
+    cursor: pointer;
 }
