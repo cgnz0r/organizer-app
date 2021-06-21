@@ -1,30 +1,30 @@
-<template class="day-item">
-    <div class="day-item__wrapper">
-        <div class="day-item__title-group">
-            <div class="day-item__title">{{ day }}</div>
-            <div v-if="today == day" class="day-item__today">today</div>
-            <div class="day-item__weather">{{ weather }}&#176;С</div>
+<template class="weekday-item">
+    <div class="weekday-item__wrapper">
+        <div class="weekday-item__title-group">
+            <div class="weekday-item__title">{{ day }}</div>
+            <div v-if="today == day" class="weekday-item__today">today</div>
+            <div class="weekday-item__weather">{{ weather }}&#176;С</div>
         </div>
-        <div class="day-item__tasks">
-            <ul class="day-item__ul-task">
-                <li class="day-item__li-task" v-for="task in tasks" :key="task.id">
-                    <div class="day-item__input-group">
-                        <div class="day-item__task">
+        <div class="weekday-item__tasks">
+            <ul class="weekday-item__ul-task">
+                <li class="weekday-item__li-task" v-for="task in tasks" :key="task.id">
+                    <div class="weekday-item__input-group">
+                        <div class="weekday-item__task">
                             <input :id="task.id" type="checkbox" :checked="task.isCompleted">
                         </div>
-                        <div class="day-item__task">
-                            <label :for="task.id" class="day-item__task-title">{{ task.title }}</label>
-                            <p class="day-item__task-desc">{{ task.desc }}</p>
+                        <div class="weekday-item__task">
+                            <label :for="task.id" class="weekday-item__task-title">{{ task.title }}</label>
+                            <p class="weekday-item__task-desc">{{ task.desc }}</p>
                         </div>
                     </div>
-                    <div class="day-item__task">
-                        <p class="day-item__task-time">{{ task.time }}</p>
+                    <div class="weekday-item__task">
+                        <p class="weekday-item__task-time">{{ task.time }}</p>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="day-item__add-btn-wrapper">
-            <button class="day-item__add-btn" @click='openModal'>
+        <div class="weekday-item__add-btn-wrapper">
+            <button class="weekday-item__add-btn" @click='openModal'>
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 768 768">
                     <title>add todo</title>
                     <path d="M160 416h192v192c0 17.664 14.336 32 32 32s32-14.336 32-32v-192h192c17.664 0 32-14.336 32-32s-14.336-32-32-32h-192v-192c0-17.664-14.336-32-32-32s-32 14.336-32 32v192h-192c-17.664 0-32 14.336-32 32s14.336 32 32 32z"></path>
@@ -41,6 +41,7 @@
                 <span class="modal__title">Todo add form</span>
             </template>
             <template v-slot:main>
+                <!-- todo <form v-on:submit.prevent></form> -->
                 <div class="modal__input-group">
                     <label for="title" class="modal__label">Title</label>
                     <input 
@@ -210,7 +211,7 @@
 <style lang="scss">
     @import '../assets/styles/main.scss';
 
-    .day-item {
+    .weekday-item {
         &__wrapper {
             display: flex;
             flex-flow: column nowrap;

@@ -1,16 +1,19 @@
 <template>
     <div class="day-items__wrapper">
-        <WeekDay 
-            v-for="day in weekDays" 
-            :day="day"
-            :key="day" 
-        />
+        <SimpleCarousel :items-per-view="3">
+            <WeekDay 
+                v-for="day in weekDays" 
+                :day="day"
+                :key="day" 
+            />
+        </SimpleCarousel>
     </div>
 </template>
 
 <script>
     import moment from "moment";
     import WeekDay from './WeekDay';
+    import SimpleCarousel from "vue2-simple-carousel";
 
     export default {
         data() {
@@ -20,7 +23,8 @@
             };
         },
         components: {
-            WeekDay
+            WeekDay,
+            SimpleCarousel
         },
         mounted() {
             const startWeekDay = moment().startOf("week");
@@ -34,12 +38,35 @@
 </script>
 
 <style lang="scss">
-    .day-items {
+    @import '../assets/styles/main.scss';
 
-        &__wrapper {
-            display: flex;
-            flex-flow: column wrap;
-            align-items: center;
+    .carousel {
+        &__button {
+            border: none;
+            background: $primary;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+
+            &:hover {
+                background: $hovered-dark;
+            }
+
+            &--next {
+                right: 8px !important;
+
+                & > span {
+                    color: $light;
+                }
+            }
+
+            &--prev {
+                left: 8px !important;
+
+                & > span {
+                    color: $light;
+                }
+            }
         }
     }
 </style>

@@ -66,6 +66,8 @@
         position: relative;
         height: 100vh;
         overflow: auto;
+        display: flex;
+        flex-flow: column nowrap;
     }
 
     .hidden-y-scroll {
@@ -102,6 +104,7 @@
 
     .main {
         margin: 32px 0;
+        flex: 0 1 100%;
     }
 
     .footer {
