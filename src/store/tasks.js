@@ -12,8 +12,8 @@ export default {
     },
     mutations: {
         [INIT_DATA](state, data) {
-            const localOrgTodos = localStorage.org_todos;
-            if (typeof localOrgTodos !== "undefined") {
+            const localOrgtasks = localStorage.org_tasks;
+            if (typeof localOrgtasks !== "undefined") {
                 state.data = JSON.parse(data);
             }
         },

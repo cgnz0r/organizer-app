@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import todos from './todos'
+import tasks from './tasks'
 
 import { SET_MODAL_OPENED_STATUS, SET_MODAL_CLOSED_STATUS } from './mutation-types'
 
@@ -19,6 +19,6 @@ export default new Vuex.Store({
         }
     },
     modules: {
-        todos
+        tasks
     }
 });

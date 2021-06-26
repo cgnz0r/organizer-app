@@ -14,7 +14,8 @@
             </div>
         </header>
         <main class="main">
-            <Week />
+            <!-- <Week /> -->
+            <Day />
         </main>
         <footer class="footer">
             info in the footer
@@ -25,7 +26,8 @@
 <script>
     import Time from './components/Time';
     import Weather from './components/Weather';
-    import Week from './components/Week';
+    import Day from './components/Day';
+    // import Week from './components/Week';
     import { mapMutations, mapGetters, mapState } from 'vuex';
 
     export default {
@@ -33,13 +35,14 @@
         components: {
             Time,
             Weather,
-            Week
+            // Week
+            Day
         },
         data() {
             return { }
         },
         methods: {
-            ...mapMutations('todos', [
+            ...mapMutations('tasks', [
                 'INIT_DATA'
             ]),
         },
@@ -47,13 +50,13 @@
             this.INIT_DATA();
         },
         computed: {
-            ...mapGetters('todos', ['getData']),
+            ...mapGetters('tasks', ['getData']),
             ...mapState(['isModalOpened'])
         },
         watch: {
             getData(data) {
                 console.log("App :: get Data", data);
-                // localStorage.setItem('org_todos', JSON.stringify(data));
+                // localStorage.setItem('org_tasks', JSON.stringify(data));
             }
         }
     };

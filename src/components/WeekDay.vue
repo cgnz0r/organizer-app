@@ -26,7 +26,7 @@
         <div class="weekday-item__add-btn-wrapper">
             <button class="weekday-item__add-btn" @click='openModal'>
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 768 768">
-                    <title>add todo</title>
+                    <title>add task</title>
                     <path d="M160 416h192v192c0 17.664 14.336 32 32 32s32-14.336 32-32v-192h192c17.664 0 32-14.336 32-32s-14.336-32-32-32h-192v-192c0-17.664-14.336-32-32-32s-32 14.336-32 32v192h-192c-17.664 0-32 14.336-32 32s14.336 32 32 32z"></path>
                 </svg>
             </button>
@@ -34,14 +34,14 @@
         <Modal 
             v-if="isModalOpened"
             @onClose="closeModal"
-            @onAccept="createTodo"
+            @onAccept="createtask"
             :acceptTitle="acceptTitle"
         >
             <template v-slot:title>
-                <span class="modal__title">Todo add form</span>
+                <span class="modal__title">task add form</span>
             </template>
             <template v-slot:main>
-                <!-- todo <form v-on:submit.prevent></form> -->
+                <!-- task <form v-on:submit.prevent></form> -->
                 <div class="modal__input-group">
                     <label for="title" class="modal__label">Title</label>
                     <input 
@@ -50,7 +50,7 @@
                         class="modal__input modal__input_text" 
                         placeholder="Enter your title" 
                         autocomplete="off"
-                        v-model.lazy="todoTitle"
+                        v-model.lazy="taskTitle"
                     />
                 </div>
                 <div class="modal__input-group">
@@ -61,7 +61,7 @@
                         class="modal__input modal__input_textarea" 
                         rows="5" 
                         placeholder="Enter your description..." 
-                        v-model.lazy="todoDesc"
+                        v-model.lazy="taskDesc"
                     />
                 </div>
 
@@ -110,7 +110,7 @@
             </template>
             <template v-slot:accept-button>
                 <button 
-                    @click="createTodo" 
+                    @click="createtask" 
                     class="modal__accept-button" 
                     type="button"
                 >
@@ -133,17 +133,17 @@
             return {
                 isModalOpened: false,
                 acceptTitle: "Create",
-                todoTitle: "",
-                todoDesc: "",
+                taskTitle: "",
+                taskDesc: "",
                 formHours: "",
                 formMinutes: "",
                 formAmPm: "",
-                // todo update fields on mount
-                todoTime: moment().format("hh:mm a"),
+                // task update fields on mount
+                taskTime: moment().format("hh:mm a"),
 
                 weather: 15,
                 today: "Sun, 30th",
-                // todo move to vuex
+                // task move to vuex
                 tasks: [{
                     id: 1,
                     title: 'task 1', 
@@ -175,7 +175,7 @@
             }
         },
         methods: {
-            ...mapMutations('todos', 
+            ...mapMutations('tasks', 
                 ['SET_ITEM']
             ),
             ...mapMutations({
@@ -188,7 +188,7 @@
                 this.formMinutes = currTime.format("mm");
                 this.formAmPm = currTime.format("a");
                 console.log(this.formAmPm);
-                // todo am pm update
+                // task am pm update
             },
             closeModal() {
                 this.isModalOpened = false;
@@ -199,8 +199,8 @@
                 this.isModalOpened = true;
                 this.setModalOpenedStatus();
             },
-            createTodo() {
-                console.log("add todo handle :: todoTitle", this.todoTime);
+            createtask() {
+                console.log("add task handle :: taskTitle", this.taskTime);
                 this.closeModal();
             },
         },
@@ -233,7 +233,7 @@
                 padding: 16px 0;
             }
 
-            // todo active day check
+            // task active day check
             &:first-child {
                 border: 1px solid $active;
             }
@@ -305,6 +305,7 @@
         }
 
         &__add-btn {
+            cursor: pointer;
             border: none;
             background: $primary;
             border-radius: 50%;

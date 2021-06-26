@@ -41,3 +41,66 @@ legend {
     font-size: 1.5em;
     cursor: pointer;
 }
+
+.text-afterline {
+    overflow: hidden;
+
+    &:after {
+        content:"";
+        display: inline-block;
+        height: 0.5em;
+        vertical-align: bottom;
+        width: 100%;
+        margin-right: -100%;
+        margin-left: 10px;
+        border-top: 2px solid $grayscale2;
+    }
+}
+
+.no-content {
+    text-align: center; 
+    color: $dark;
+
+    &__img {
+        width: 200px;
+        margin: 16px auto;
+    }
+
+    &__title {
+        margin: 8px 0;
+        font-size: 24px;
+    }
+
+    &__text {
+        font-size: 20px;
+        margin: 8px 0;
+    }
+
+    &__text-explain {
+        font-size: 16px;
+    }
+}
+
+.button {
+    background: $primary;
+    color: $light;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 16px 32px;
+    font-weight: bold;
+
+    &:hover {
+        background: $hovered-dark;
+    }
+}
+
+.button-round {
+
+}
+
+
+.mt32 { margin-top: 32px; }
+.mt16 { margin-top: 16px; }
+.mb32 { margin-bottom: 32px; }
+.mb16 { margin-bottom: 16px; }
