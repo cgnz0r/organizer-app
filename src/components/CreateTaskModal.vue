@@ -115,7 +115,7 @@
                 description: "",
                 hours: "",
                 minutes: "",
-                interval: ""
+                interval: "am"
             }
         },
         props: {
@@ -135,9 +135,39 @@
             ...mapMutations({
                 setModalClosedStatus: 'SET_MODAL_CLOSED_STATUS'
             }),
+            ...mapMutations('tasks', {
+                setItem: 'SET_ITEM'
+            }),
+            generateUUID() {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            },
             createTask() {
-                // todo create task
-                console.log("CreateTaskModal :: createTask");
+                // todo update with vuelidate
+                // dummy validate
+                console.log("CreateTaskModal :: createTask : fields", 
+                    this.title, 
+                    this.description,
+                    this.hours,
+                    this.minutes,
+                    this.interval
+                );
+                if (this.title.length > 0
+                    && this.description.length > 0
+                    && this.hours.length > 0
+                    && this.minutes.length > 0
+                    && this.interval.length > 0
+                ) {
+                    this.setItem({
+                        id: this.generateUUID(),
+                        title: this.title,
+                        description: this.description,
+                        time: `${this.hours}:${this.minutes} ${this.interval}`,
+                        isCompleted: false
+                    });
+                }
                 this.setModalClosedStatus();
             }
         }        
