@@ -8,12 +8,12 @@
                     <p class="no-content__text">
                         Hey, you have no tasks for this day
                     </p>
-                    <button class="button mt32" @click="createTask">Сreate task</button>
+                    <button class="button mt32" @click="setModalOpenedStatus">Сreate task</button>
                 </div>
             </div>
 
             <div v-else class="day__tasks-content">
-
+                
             </div>
 
         </div>
@@ -35,32 +35,45 @@
                 
             </div>
         </div>
+
+        <CreateTaskModal v-if="isModalOpened" :date=date />
+
     </div>
 </template>
 
 <script>
+    import CreateTaskModal from './CreateTaskModal'
+    import { mapGetters, mapMutations } from 'vuex';
+
     export default {
         props: {
             date: String
         },
         data() {
-            return {}
+            return {
+                
+            }
+        },
+        components: {
+            CreateTaskModal
         },
         mounted() {
             this.initDate();
         },
         methods: {
+            ...mapMutations({
+                setModalOpenedStatus: 'SET_MODAL_OPENED_STATUS'
+            }),
             initDate() {
                 // parse this.date
                 // get it from localStorage
                 // set to current
-            },
-            createTask() {
-                alert("temporary doesn't work");
-                // todo
             }
         },
         computed: {
+            ...mapGetters({
+                isModalOpened: "getModalStatus"
+            }),
             isTooLate() {
                 return true;
                 // task if this day later than today by 3

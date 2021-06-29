@@ -31,119 +31,21 @@
                 </svg>
             </button>
         </div>
-        <Modal 
-            v-if="isModalOpened"
-            @onClose="closeModal"
-            @onAccept="createtask"
-            :acceptTitle="acceptTitle"
-        >
-            <template v-slot:title>
-                <span class="modal__title">task add form</span>
-            </template>
-            <template v-slot:main>
-                <!-- task <form v-on:submit.prevent></form> -->
-                <div class="modal__input-group">
-                    <label for="title" class="modal__label">Title</label>
-                    <input 
-                        id="title" 
-                        type="text" 
-                        class="modal__input modal__input_text" 
-                        placeholder="Enter your title" 
-                        autocomplete="off"
-                        v-model.lazy="taskTitle"
-                    />
-                </div>
-                <div class="modal__input-group">
-                    <label for="desc" class="modal__label">Description</label>
-                    <textarea 
-                        id="desc" 
-                        name="desc" 
-                        class="modal__input modal__input_textarea" 
-                        rows="5" 
-                        placeholder="Enter your description..." 
-                        v-model.lazy="taskDesc"
-                    />
-                </div>
-
-                <div class="modal__input-group">
-                    <fieldset class="modal__input-fieldset">
-                        <legend>Time</legend>
-
-                        <div class="modal__input-group">
-                            <label for="form-hours" class="modal__label">hrs</label>
-                            <input 
-                                id="form-hours" 
-                                class="modal__input modal__input_number" 
-                                type="number"
-                                min="0"
-                                max="60"
-                                step="1"
-                                v-model.lazy="formHours"
-                            />
-                        </div>
-                        <div class="modal__input-group">
-                            <label for="form-minutes" class="modal__label">mins</label>
-                            <input 
-                                id="form-minutes" 
-                                class="modal__input modal__input_number" 
-                                type="number"
-                                min="0"
-                                max="60"
-                                step="1"
-                                v-model.lazy="formMinutes"
-                            />
-                        </div>
-                        <div class="modal__input-group">
-                            <label for="form-ampm" class="modal__label">am / pm</label>
-                            <select 
-                                id="form-ampm" 
-                                name="form-ampm" 
-                                class="modal__input modal__input_select"
-                                v-model="formAmPm"
-                            >
-                                <option class="modal__option" value="am">a.m.</option>
-                                <option class="modal__option" value="pm">p.m.</option>
-                            </select>
-                        </div>
-                    </fieldset>
-                </div>
-            </template>
-            <template v-slot:accept-button>
-                <button 
-                    @click="createtask" 
-                    class="modal__accept-button" 
-                    type="button"
-                >
-                    Create
-                </button>
-            </template>
-        </Modal>
     </div>
 </template>
 
 <script>
     import moment from 'moment';
-    import { mapMutations } from 'vuex'
-    import Modal from './Modal'
+    import { mapMutations } from 'vuex';
+
     export default {
         props: {
             day: String
         },
         data() {
             return {
-                isModalOpened: false,
-                acceptTitle: "Create",
-                taskTitle: "",
-                taskDesc: "",
-                formHours: "",
-                formMinutes: "",
-                formAmPm: "",
                 // task update fields on mount
                 taskTime: moment().format("hh:mm a"),
-
-                weather: 15,
-                today: "Sun, 30th",
-                // task move to vuex
                 tasks: [{
                     id: 1,
                     title: 'task 1', 
@@ -165,22 +67,13 @@
                 }]
             }
         },
-        components: {
-            Modal
-        },
         computed: { },
-        watch: {
-            formAmPm(value) {
-                console.log("formAmPm", value);
-            }
-        },
         methods: {
             ...mapMutations('tasks', 
                 ['SET_ITEM']
             ),
             ...mapMutations({
-                setModalOpenedStatus: 'SET_MODAL_OPENED_STATUS', 
-                setModalClosedStatus: 'SET_MODAL_CLOSED_STATUS'
+                setModalOpenedStatus: 'SET_MODAL_OPENED_STATUS'
             }),
             updateFieldsTime() {
                 const currTime = moment();
@@ -198,11 +91,7 @@
                 this.updateFieldsTime();
                 this.isModalOpened = true;
                 this.setModalOpenedStatus();
-            },
-            createtask() {
-                console.log("add task handle :: taskTitle", this.taskTime);
-                this.closeModal();
-            },
+            }
         },
         
     }

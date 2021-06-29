@@ -10,6 +10,11 @@ export default new Vuex.Store({
     state: {
         isModalOpened: false
     },
+    getters: {
+        getModalStatus(state) {
+            return state.isModalOpened;
+        }
+    },
     mutations: {
         [SET_MODAL_OPENED_STATUS](state) {
             state.isModalOpened = true;
