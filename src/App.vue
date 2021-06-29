@@ -42,12 +42,13 @@
             return { }
         },
         methods: {
-            ...mapMutations('tasks', [
-                'INIT_DATA'
-            ]),
+            ...mapMutations('tasks', {
+                initData: 'INIT_DATA', 
+                stashData: 'STASH_DATA'
+            }),
         },
         mounted() {
-            this.INIT_DATA();
+            this.initData();
         },
         computed: {
             ...mapGetters('tasks', ['getData']),
@@ -56,8 +57,10 @@
         watch: {
             getData(data) {
                 console.log("App :: get Data", data);
-                // localStorage.setItem('org_tasks', JSON.stringify(data));
             }
+        },
+        beforeDestroy() {
+            this.stashData();
         }
     };
 </script>

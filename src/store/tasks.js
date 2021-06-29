@@ -1,4 +1,4 @@
-import { INIT_DATA, SET_ITEM } from './mutation-types'
+import { INIT_DATA, SET_ITEM, STASH_DATA } from './mutation-types'
 
 export default {
     namespaced: true,
@@ -12,16 +12,17 @@ export default {
     },
     mutations: {
         [INIT_DATA](state, data) {
-            const localOrgtasks = localStorage.org_tasks;
-            if (typeof localOrgtasks !== "undefined") {
+            const localOrgTasks = localStorage.org_tasks;
+
+            if (typeof localOrgTasks !== "undefined") {
                 state.data = JSON.parse(data);
             }
         },
         [SET_ITEM](state, item) {
             state.data.push(item);
+        },
+        [STASH_DATA](state) {
+            localStorage.setItem('org_tasks', JSON.stringify(state.data));
         }
-    },
-    actions: {
-
     }
 }

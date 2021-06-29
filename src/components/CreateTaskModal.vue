@@ -1,7 +1,7 @@
 <template>
     <div class="modal__overlay">
-        <div class="modal__wrapper">
-
+        <form v-on:submit.prevent class="modal__wrapper">
+            
             <!-- top section -->
             <div class="modal__top-section">
                 <span class="modal__title">Task creation</span>
@@ -12,7 +12,6 @@
 
             <!-- middle section -->
             <div class="modal__middle-section">
-                <!-- task <form v-on:submit.prevent></form> -->
 
                 <!-- title -->
                 <div class="modal__input-group">
@@ -51,6 +50,7 @@
                             <input 
                                 id="form-hours" 
                                 class="modal__input modal__input_number" 
+                                autocomplete="off"
                                 type="number"
                                 min="0"
                                 max="60"
@@ -65,6 +65,7 @@
                             <input 
                                 id="form-minutes" 
                                 class="modal__input modal__input_number" 
+                                autocomplete="off"
                                 type="number"
                                 min="0"
                                 max="60"
@@ -99,8 +100,7 @@
                     Create
                 </button>
             </div>
-
-        </div>
+        </form>
     </div>
 </template>
 
@@ -231,7 +231,6 @@
             & #{$g}__input-group {
                 width: 88px;
                 margin: 0 20px 0 0;
-                text-align: center;
             }
 
             & #{$g}__input-group:last-child {
