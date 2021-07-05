@@ -28,7 +28,7 @@
     import Weather from './components/Weather';
     import Day from './components/Day';
     // import Week from './components/Week';
-    import { mapMutations, mapGetters, mapState } from 'vuex';
+    import { mapMutations, mapState } from 'vuex';
 
     export default {
         name: 'App',
@@ -47,19 +47,14 @@
                 stashData: 'STASH_DATA'
             }),
         },
-        mounted() {
+        created() {
             this.initData();
         },
         computed: {
-            ...mapGetters('tasks', ['getData']),
             ...mapState(['isModalOpened'])
         },
-        watch: {
-            getData(data) {
-                console.log("App :: get Data", data);
-            }
-        },
         beforeDestroy() {
+            alert("app :: before Destroy");
             this.stashData();
         }
     };

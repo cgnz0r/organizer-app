@@ -77,19 +77,10 @@
             }),
             updateFieldsTime() {
                 const currTime = moment();
-                this.formHours = currTime.format("hh");
-                this.formMinutes = currTime.format("mm");
-                this.formAmPm = currTime.format("a");
-                console.log(this.formAmPm);
+                
                 // task am pm update
             },
-            closeModal() {
-                this.isModalOpened = false;
-                this.setModalClosedStatus();
-            },
             openModal() {
-                this.updateFieldsTime();
-                this.isModalOpened = true;
                 this.setModalOpenedStatus();
             }
         },

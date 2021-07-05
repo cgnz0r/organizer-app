@@ -8,6 +8,8 @@ Vue.use(ApiPlugin);
 
 Vue.config.productionTip = false
 
+Vue.prototype.$dateFormat = "DD.MM.YYYY";
+
 new Vue({
   store,
   render: h => h(App)
