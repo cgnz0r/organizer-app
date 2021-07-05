@@ -1,14 +1,12 @@
 import Vue from 'vue'
-import Vuex, { StoreOptions} from 'vuex'
-import { tasks } from './tasks'
+import Vuex from 'vuex'
+import tasks from './tasks'
 
 import { SET_MODAL_OPENED_STATUS, SET_MODAL_CLOSED_STATUS } from './mutation-types'
 
-import { IRootState } from './interfaces'
-
 Vue.use(Vuex)
 
-const store: StoreOptions<IRootState> = {
+export default new Vuex.Store({
     state: {
         isModalOpened: false
     },
@@ -28,6 +26,4 @@ const store: StoreOptions<IRootState> = {
     modules: {
         tasks
     }
-};
-
-export default new Vuex.Store<IRootState>(store);
+});

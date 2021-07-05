@@ -145,8 +145,6 @@
                 });
             },
             createTask() {
-                const date = moment().format(this.$dateFormat);
-                console.log("CreateTaskModal :: createTask : date", date);
                 // todo update with vuelidate
                 // dummy validate
                 console.log("CreateTaskModal :: createTask : fields", 
@@ -162,13 +160,13 @@
                     && this.minutes.length > 0
                     && this.interval.length > 0
                 ) {
-                    // this.setItem(date, {
-                    //     id: this.generateUUID(),
-                    //     title: this.title,
-                    //     description: this.description,
-                    //     time: `${this.hours}:${this.minutes} ${this.interval}`,
-                    //     isCompleted: false
-                    // });
+                    this.setItem({
+                        id: this.generateUUID(),
+                        title: this.title,
+                        description: this.description,
+                        time: `${this.hours}:${this.minutes} ${this.interval}`,
+                        isCompleted: false
+                    });
                 }
                 this.setModalClosedStatus();
             }
