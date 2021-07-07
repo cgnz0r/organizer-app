@@ -13,7 +13,14 @@
             </div>
 
             <div v-else class="day__tasks-content">
-                
+                <div v-for="task in testData" :key="task.id" class="day__task-card">
+                    <div class="day__task-header">
+                        <h4>{{ task.title }}</h4>
+                        <input type="checkbox" :checked="task.isCompleted">
+                    </div>
+                    <p class="day__task-description">{{ task.description }}</p>
+                    <p class="day__task-time">{{ task.time }}</p>
+                </div>
             </div>
 
         </div>
@@ -51,7 +58,19 @@
         },
         data() {
             return {
-                
+                testData: [{
+                    id: "365346",
+                    title: "Test Task",
+                    description: "Desc",
+                    time: `11:15 a.m.`,
+                    isCompleted: false
+                },{
+                    id: "3adhd346",
+                    title: "sdsgTest Task",
+                    description: "Dsgheresc",
+                    time: `2:15 a.m.`,
+                    isCompleted: true
+                }]
             }
         },
         components: {
@@ -79,7 +98,7 @@
                 // task if this day later than today by 3
             },
             isTasksEmpty() {
-                return true;
+                return this.testData.length === 0;
             }
         }
     }
@@ -97,6 +116,32 @@
 
         & h3 {
             font-size: 28px;
+        }
+
+        &__task-card {
+            width: 320px;
+            border: 1px solid $primary;
+            margin: 8px;
+
+            & > * {
+                padding: 16px;
+            }
+        }
+
+        &__task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: $light;
+            background-color: $primary;
+        }
+
+        &__task-description {
+            border-bottom: 1px solid $grayscale4;
+        }
+
+        &__task-time {
+            color: $grayscale4;
         }
     }
 </style>

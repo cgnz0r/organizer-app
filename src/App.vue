@@ -43,19 +43,14 @@
         },
         methods: {
             ...mapMutations('tasks', {
-                initData: 'INIT_DATA', 
-                stashData: 'STASH_DATA'
-            }),
+                initData: 'INIT_DATA'
+            })
         },
         created() {
             this.initData();
         },
         computed: {
             ...mapState(['isModalOpened'])
-        },
-        beforeDestroy() {
-            alert("app :: before Destroy");
-            this.stashData();
         }
     };
 </script>
